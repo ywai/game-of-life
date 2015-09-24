@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.wakaleo.gameoflife</groupId>
   <artifactId>gameoflife</artifactId>
-  <version>1.0-SNAPSHOT</version>
+  <version>1.0</version>
   <packaging>pom</packaging>
   <name>gameoflife</name>
   <url>https://github.com/ywai/game-of-life</url>
@@ -24,6 +24,7 @@
     <connection>scm:git:git@github.com:${github.account}/game-of-life.git</connection>
     <developerConnection>scm:git:git@github.com:${github.account}/game-of-life.git</developerConnection>
     <url>scm:git:git@github.com:${github.account}/game-of-life.git</url>
+    <tag>gameoflife-1.0</tag>
   </scm>
   
   <build>
