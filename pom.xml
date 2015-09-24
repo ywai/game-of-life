@@ -218,12 +218,12 @@
     </modules>
     <distributionManagement>
       <repository>
-        <id>internal-releases</id>
+        <id>internal.releases</id>
         <name>internal-releases</name>
         <url>http://10.104.128.58:8081/nexus/content/repositories/releases</url>
       </repository>
       <snapshotRepository>
-        <id>internal-snapshots</id>
+        <id>internal.snapshots</id>
         <name>internal-snapshots</name>
         <url>http://10.104.128.58:8081/nexus/content/repositories/snapshots</url>
       </snapshotRepository>
@@ -315,7 +315,7 @@
             <plugin>
               <groupId>org.apache.maven.plugins</groupId>
               <artifactId>maven-site-plugin</artifactId>
-              <version>3.0</version>
+              <version>3.4</version>
               <configuration>
                 <reportPlugins>
                   <plugin>
