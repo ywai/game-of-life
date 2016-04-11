@@ -12,13 +12,15 @@ node ('Linux64') {
    stage 'Build'
    // Run the maven build
    sh "${mvnHome}/bin/mvn clean install"
-
+   
+   stage 'Test'
    //Collect test results
    step([$class: 'JUnitResultArchiver', testResults: '**/target/surefire-reports/*.xml'])
 
+   stage 'Deploy to Nexus'
    //archive artifact to Nexus
-   //sshagent(['my-private-key-credentials-ID']) {
-   //  sh 'scp some-file www@somewhere.net:/apps'
-   //}
+   sshagent(['57bfe579-8720-47e1-bd1a-3ca835aac004']) {
+      sh 'scp -P22 gameoflife-build/target/*.jar buildtool@10.104.128.58:/space/sonatype-work/nexus/storage/snapshots/com/wakaleo/gameoflife/gameoflife/${BUILD_NUMBER}/'
+   }
    
 }
