@@ -12,4 +12,13 @@ node ('Linux64') {
    stage 'Build'
    // Run the maven build
    sh "${mvnHome}/bin/mvn clean install"
+
+   //Collect test results
+   step([$class: 'JUnitResultArchiver', testResults: '**/target/surefire-reports/*.xml'])
+
+   //archive artifact to Nexus
+   //sshagent(['my-private-key-credentials-ID']) {
+   //  sh 'scp some-file www@somewhere.net:/apps'
+   //}
+   
 }
