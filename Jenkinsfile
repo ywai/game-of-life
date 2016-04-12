@@ -3,10 +3,7 @@ node ('Linux64') {
    stage 'Checkout'
 
    // Get code from a GitHub repository
-   git {
-      poll:true
-      url: 'https://github.com/ywai/game-of-life.git'
-   }
+   git poll: true, url: 'https://github.com/ywai/game-of-life.git'
 
    // Get the maven tool.
    def mvnHome = tool 'MVN3.2.2'
