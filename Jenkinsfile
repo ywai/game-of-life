@@ -20,8 +20,8 @@ node ('Linux64') {
    stage 'Deploy to Nexus'
    //archive artifact to Nexus
    sshagent(['57bfe579-8720-47e1-bd1a-3ca835aac004']) {
-      sh "mkdir -p /space/sonatype-work/nexus/storage/snapshots/com/wakaleo/gameoflife/gameoflife/${BUILD_NUMBER}"
-      sh 'scp -P22 gameoflife-build/target/*.jar buildtool@10.104.128.58:/space/sonatype-work/nexus/storage/snapshots/com/wakaleo/gameoflife/gameoflife/${BUILD_NUMBER}/'
+      sh 'mkdir -p /space/sonatype-work/nexus/storage/snapshots/com/wakaleo/gameoflife/gameoflife/${env.BUILD_NUMBER}'
+      sh 'scp -P22 gameoflife-build/target/*.jar buildtool@10.104.128.58:/space/sonatype-work/nexus/storage/snapshots/com/wakaleo/gameoflife/gameoflife/${env.BUILD_NUMBER}/'
    }
    
 }
