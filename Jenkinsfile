@@ -3,7 +3,10 @@ node ('Linux64') {
    stage 'Checkout'
 
    // Get code from a GitHub repository
-   git url: 'https://github.com/ywai/game-of-life.git'
+   git {
+      poll:true
+      url: 'https://github.com/ywai/game-of-life.git'
+   }
 
    // Get the maven tool.
    def mvnHome = tool 'MVN3.2.2'
@@ -20,8 +23,8 @@ node ('Linux64') {
    stage 'Deploy to Nexus'
    //archive artifact to Nexus
    sshagent(['57bfe579-8720-47e1-bd1a-3ca835aac004']) {
-      sh 'mkdir -p /space/sonatype-work/nexus/storage/snapshots/com/wakaleo/gameoflife/gameoflife/${env.BUILD_NUMBER}'
-      sh 'scp -P22 gameoflife-build/target/*.jar buildtool@10.104.128.58:/space/sonatype-work/nexus/storage/snapshots/com/wakaleo/gameoflife/gameoflife/${env.BUILD_NUMBER}/'
+      sh "mkdir -p /space/sonatype-work/nexus/storage/snapshots/com/wakaleo/gameoflife/gameoflife/${env.BUILD_NUMBER}"
+      sh "scp -P22 gameoflife-build/target/*.jar buildtool@10.104.128.58:/space/sonatype-work/nexus/storage/snapshots/com/wakaleo/gameoflife/gameoflife/${env.BUILD_NUMBER}/"
    }
    
 }
