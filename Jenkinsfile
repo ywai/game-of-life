@@ -1,4 +1,4 @@
-node ('Linux64') {
+node ('shared') {
    // Mark the code checkout 'stage'....
    stage 'Checkout'
 
@@ -6,7 +6,7 @@ node ('Linux64') {
    git poll: true, url: 'https://github.com/ywai/game-of-life.git'
 
    // Get the maven tool.
-   def mvnHome = tool 'MVN3.2.2'
+   def mvnHome = tool 'MVN_3.3.9'
 
    // Mark the code build 'stage'....
    stage 'Build'
@@ -17,11 +17,17 @@ node ('Linux64') {
    //Collect test results
    step([$class: 'JUnitResultArchiver', testResults: '**/target/surefire-reports/*.xml'])
 
-   stage 'Deploy to Nexus'
+   //stage 'Deploy to Nexus'
    //archive artifact to Nexus
-   sshagent(['57bfe579-8720-47e1-bd1a-3ca835aac004']) {
+   //sshagent(['57bfe579-8720-47e1-bd1a-3ca835aac004']) {
       //sh "mkdir -p /space/sonatype-work/nexus/storage/snapshots/com/wakaleo/gameoflife/gameoflife/${env.BUILD_NUMBER}"
       //sh "scp -P22 gameoflife-build/target/*.jar buildtool@10.104.128.58:/space/sonatype-work/nexus/storage/snapshots/com/wakaleo/gameoflife/gameoflife/${env.BUILD_NUMBER}/"
-   }
-   
+   //}
+}
+node('shared'){
+    stage name: 'deploy', concurrency: 1
+      //deploy stuff one at a time
+      //deployment scripts here...
+      sleep 4
+      echo 'Deployed'
 }
