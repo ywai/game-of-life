@@ -1,4 +1,4 @@
-node ('shared') {
+node ('Linux64') {
    // Mark the code checkout 'stage'....
    stage 'Checkout'
 
@@ -6,7 +6,7 @@ node ('shared') {
    git poll: true, url: 'https://github.com/ywai/game-of-life.git'
 
    // Get the maven tool.
-   def mvnHome = tool 'MVN_3.3.9'
+   def mvnHome = tool 'MVN_3.2.2'
 
    // Mark the code build 'stage'....
    stage 'Build'
@@ -24,7 +24,7 @@ node ('shared') {
       //sh "scp -P22 gameoflife-build/target/*.jar buildtool@10.104.128.58:/space/sonatype-work/nexus/storage/snapshots/com/wakaleo/gameoflife/gameoflife/${env.BUILD_NUMBER}/"
    //}
 }
-node('shared'){
+node('Linux64'){
     stage name: 'deploy', concurrency: 1
       //deploy stuff one at a time
       //deployment scripts here...
