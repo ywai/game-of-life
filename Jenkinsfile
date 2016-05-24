@@ -6,7 +6,7 @@ node ('Linux64') {
    git poll: true, url: 'https://github.com/ywai/game-of-life.git'
 
    // Get the maven tool.
-   def mvnHome = tool 'MVN_3.2.2'
+   def mvnHome = tool 'MVN3.2.2'
 
    // Mark the code build 'stage'....
    stage 'Build'
